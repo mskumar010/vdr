@@ -1,0 +1,199 @@
+.viewDocSec {
+  display: flex;
+  flex-direction: row;
+  margin: 20px ;
+  gap:20px;
+}
+.viewDocSec-doctorDetails {
+  height: auto;
+  margin: 60px auto;
+  padding: 2rem 1.5rem 1.5rem;
+  border-radius: 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden; /* Show only within card */
+  z-index: 0;
+  margin-left: 25%;
+  min-width: 50%;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Watermark applied using ::before */
+.viewDocSec-doctorDetails::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/Images/commonImg/VDrlogoBg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  opacity: 0.06; /* Adjust to make it more or less visible */
+  z-index: 0;
+  pointer-events: none;
+  background-color: #fdfdfd;
+  box-shadow: 1pxx 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+}
+/* ✅ All content stays on top of the watermark */
+.viewDocSec-doctorDetails > * {
+  position: relative;
+  z-index: 1;
+}
+
+.docId-logo {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  height: auto;
+}
+
+.docId-doctor-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-top: 2.5rem;
+}
+
+h2 {
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.details {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.details p {
+  font-size: 1rem;
+  margin: 8px 0;
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.details p strong {
+  min-width: 140px;
+  font-weight: 600;
+  color: #333;
+}
+
+.experience {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #444;
+  width: 100%;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.book-btn1 {
+  padding: 0.6rem 1.2rem;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: --transition-background-color 0.2s;
+}
+
+.rate-btn1 {
+  margin-left: 10px;
+  padding: 0.6rem 1.2rem;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  --transition-background-color: background-color 0.3s ease;
+}
+
+.book-btn:hover,
+.rate-btn:hover {
+  background-color: #3e8e41;
+}
+
+/* Responsive styles */
+@media (max-width: 760px) {
+  .viewDocSec{
+    padding: 10px;
+  }
+  .doctor-card {
+    max-width: 90%;
+    padding: 1.2rem;
+  }
+  .viewDocSec-doctorDetails{
+    margin-left: 0;
+    width: 90%;
+    margin: auto;
+  }
+  .viewDocSec {
+    flex-direction: column-reverse;
+    align-items: center;
+    margin: 0;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .book-btn1 {
+    width: 100%;
+  }
+  .rate-btn1 {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .doctor-img {
+    width: 100px;
+    height: 100px;
+  }
+  .details {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  .details p strong {
+    min-width: 120px;
+  }
+  .appointmentBookingSec{
+    width: 90%;
+    margin-top: 1rem;
+  }
+}
+.appointmentBookingSec{
+  flex: 1;
+  margin: 0;
+}

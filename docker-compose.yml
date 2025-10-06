@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production  # Use the production build stage
+    ports:
+      - "80:80"  # Expose port 80 for production
+    restart: always
+    environment:
+      - NODE_ENV=production
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge

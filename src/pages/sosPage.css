@@ -1,0 +1,1433 @@
+/* EmergencySOS.css - Professional Emergency SOS Application Styling */
+
+/* Base Styles and Variables */
+:root {
+  /* Color Palette */
+  --primary-color: #e63946;
+  --secondary-color: #457b9d;
+  --dark-color: #1d3557;
+  --light-color: #f1faee;
+  --accent-color: #a8dadc;
+  --warning-color: #ffb703;
+  --success-color: #2a9d8f;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Font Sizes */
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+  --font-2xl: 1.875rem;
+  --font-3xl: 2.25rem;
+}
+
+/* Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+/* Global Layout */
+.sos__container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #fafafa;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Mobile Header */
+.sos__mobile-header {
+  display: none;
+  padding: 1rem;
+  background-color: var(--dark-color);
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+}
+
+.sos__title {
+  font-size: var(--font-xl);
+  margin: 0;
+  font-weight: 700;
+}
+
+.sos__title span {
+  color: var(--primary-color);
+  font-weight: 800;
+}
+
+.sos__menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast);
+}
+
+.sos__menu-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Sidebar */
+.sos__sidebar {
+  width: 280px;
+  background-color:rgb(255, 255, 255);
+  color: white;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal);
+  z-index: 100;
+  box-shadow: var(--shadow-lg);
+}
+
+.sos__logo {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.sos__logo-icon {
+  font-size: 1.75rem;
+  margin-right: 0.75rem;
+}
+
+.sos__logo-text {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+  color: #1d3557;
+}
+
+.sos__nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.sos__nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  font-size: var(--font-md);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.sos__nav-item:hover {
+  color: rgb(104, 152, 129);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.sos__nav-item--active {
+  color: rgb(0, 102, 255);
+  background-color: rgba(8, 122, 160, 0.639);
+  font-weight: 600;
+}
+
+.sos__nav-item--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--primary-color);
+}
+
+.sos__nav-icon {
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+}
+
+.sos__help-section {
+  margin-top: auto;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sos__help-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: rgba(22, 255, 104, 0.534);
+  border: none;
+  border-radius: var(--radius-md);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.sos__help-button:hover {
+  background-color: rgba(53, 254, 254, 0.374);
+}
+
+.sos__help-icon {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+/* Main Content */
+.sos__main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  position: relative;
+  overflow-y: auto;
+  background-color: #f8f9fa;
+}
+
+/* Panel Styles */
+.sos__panel-title {
+  font-size: var(--font-2xl);
+  margin-bottom: 1.5rem;
+  color: var(--dark-color);
+  display: flex;
+  align-items: center;
+}
+
+.sos__panel-description {
+  font-size: var(--font-md);
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.sos__section-title {
+  font-size: var(--font-lg);
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+}
+
+/* Emergency Panel */
+.sos__emergency-panel {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sos__status-indicator {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.sos__status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+
+.sos__status-dot--standby {
+  background-color: #4caf50;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+}
+
+.sos__status-dot--countdown {
+  background-color: var(--warning-color);
+  box-shadow: 0 0 0 4px rgba(255, 183, 3, 0.2);
+  animation: pulse 1s infinite;
+}
+
+.sos__status-dot--active {
+  background-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.2);
+  animation: pulse 0.5s infinite;
+}
+
+.sos__status-dot--recovery {
+  background-color: var(--success-color);
+  box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.2);
+}
+
+.sos__status-text {
+  font-weight: 600;
+  font-size: var(--font-md);
+}
+
+/* Profile Selector */
+.sos__profile-selector {
+  margin-bottom: 2rem;
+}
+
+.sos__profile-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sos__profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  background-color: white;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sos__profile-card:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.sos__profile-card:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.sos__profile-card--selected {
+  border-width: 2px;
+  border-style: solid;
+  font-weight: 600;
+}
+
+.sos__profile-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.sos__profile-name {
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Action Zone */
+.sos__action-zone {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sos__trigger-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: var(--font-lg);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 1rem 2rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-fast);
+}
+
+.sos__trigger-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.sos__trigger-button:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.sos__trigger-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+/* Countdown */
+.sos__countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sos__countdown-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--warning-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  animation: pulse 1s infinite;
+  box-shadow: var(--shadow-md);
+}
+
+.sos__cancel-button {
+  background-color: transparent;
+  border: 2px solid #ccc;
+  color: #666;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sos__cancel-button:hover {
+  border-color: #999;
+  color: #333;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sos__cancel-button--large {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 1rem 2rem;
+  font-size: var(--font-md);
+}
+
+.sos__cancel-button--large:hover {
+  background-color: rgba(230, 57, 70, 0.1);
+}
+
+/* Active Mode */
+.sos__active-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sos__beacon {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: rgba(230, 57, 70, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.sos__beacon-inner {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 2rem;
+  box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+}
+
+.sos__beacon-pulse {
+  animation: beacon-pulse 2s infinite;
+}
+
+.sos__active-message {
+  margin-bottom: 1.5rem;
+}
+
+.sos__active-message p {
+  margin: 0.5rem 0;
+  font-size: var(--font-lg);
+  font-weight: 600;
+}
+
+/* Recovery */
+.sos__recovery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sos__recovery-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--success-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.sos__recovery-text {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sos__recovery-subtext {
+  color: #666;
+}
+
+/* Info Cards */
+.sos__info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.sos__info-card {
+  background-color: white;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.sos__info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.sos__info-title {
+  font-size: var(--font-md);
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.sos__location-status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sos__location-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4caf50;
+  margin-right: 0.5rem;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.sos__location-address {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.sos__location-coords {
+  font-size: var(--font-sm);
+  color: #666;
+}
+
+.sos__contact-name {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.sos__contact-number {
+  font-size: var(--font-lg);
+  margin-bottom: 1rem;
+}
+
+.sos__contact-call {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sos__contact-call:hover {
+  background-color: #3d6990;
+}
+
+/* Notifications */
+.sos__notification {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1100;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-md);
+  background-color: white;
+  box-shadow: var(--shadow-lg);
+  transform: translateX(0);
+  opacity: 1;
+  animation: slide-in 0.3s ease forwards;
+  max-width: 400px;
+}
+
+.sos__notification--info {
+  border-left: 4px solid var(--secondary-color);
+}
+
+.sos__notification--warning {
+  border-left: 4px solid var(--warning-color);
+}
+
+.sos__notification--alert {
+  border-left: 4px solid var(--primary-color);
+}
+
+.sos__notification--success {
+  border-left: 4px solid var(--success-color);
+}
+
+.sos__notification-text {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Breathing Guide Overlay */
+.sos__breathing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.sos__breathing-content {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+}
+
+.sos__breathing-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color var(--transition-fast);
+}
+
+.sos__breathing-close:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sos__breathing-title {
+  font-size: var(--font-xl);
+  margin-bottom: 1.5rem;
+  color: var(--dark-color);
+}
+
+.sos__breathing-circle {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sos__breathing-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(168, 218, 220, 0.5);
+  animation: breathing 10s infinite ease-in-out;
+}
+
+.sos__breathing-text {
+  font-size: var(--font-xl);
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+.sos__breathing-instruction {
+  color: #666;
+  font-size: var(--font-md);
+}
+
+/* Profiles Panel */
+.sos__profiles-panel {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sos__profiles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sos__profile-edit-card {
+  background-color: white;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--primary-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.sos__profile-edit-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.sos__profile-edit-header {
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+.sos__profile-edit-icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.sos__profile-edit-name {
+  font-size: var(--font-md);
+  margin: 0;
+}
+
+.sos__profile-edit-body {
+  padding: 1.5rem;
+}
+
+.sos__profile-edit-field {
+  margin-bottom: 1rem;
+}
+
+.sos__profile-label {
+  display: block;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.sos__profile-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius-md);
+  font-size: var(--font-md);
+}
+
+.sos__profile-edit-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.sos__profile-edit-button {
+  padding: 0.5rem 1rem;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.sos__profile-edit-button:hover {
+  background-color: #e0e0e0;
+}
+
+.sos__profile-select-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.sos__profile-select-button:hover {
+  background-color: #3d6990;
+}
+
+.sos__profile-selected-badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--success-color);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  font-weight: 600;
+}
+
+/* Option Items (used in both Map options and Settings) */
+.sos__option-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.sos__option-item:last-child {
+  border-bottom: none;
+}
+
+.sos__option-text {
+  flex: 1;
+}
+
+.sos__option-title {
+  font-size: var(--font-md);
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+}
+
+.sos__option-description {
+  font-size: var(--font-sm);
+  color: #666;
+  margin: 0;
+}
+
+/* Toggle Switch */
+.sos__switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  margin-left: 1rem;
+}
+
+.sos__switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sos__switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: var(--transition-normal);
+  border-radius: 34px;
+}
+
+.sos__switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: var(--transition-normal);
+  border-radius: 50%;
+}
+
+.sos__switch input:checked + .sos__switch-slider {
+  background-color: var(--secondary-color);
+}
+
+.sos__switch input:focus + .sos__switch-slider {
+  box-shadow: 0 0 1px var(--secondary-color);
+}
+
+.sos__switch input:checked + .sos__switch-slider:before {
+  transform: translateX(24px);
+}
+
+/* Select dropdown */
+.sos__select {
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius-md);
+  background-color: white;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 4.5L6 8L9.5 4.5' stroke='%23666666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  cursor: pointer;
+}
+
+/* Settings Panel */
+.sos__settings-panel {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sos__settings-section {
+  background-color: white;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.sos__about-text {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.sos__settings-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.sos__settings-button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.sos__settings-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes beacon-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 50px rgba(230, 57, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+  }
+}
+
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+  40%, 60% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sos__map-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sos__profile-cards {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .sos__mobile-header {
+    display: flex;
+  }
+  
+  .sos__container {
+    padding-top: 60px;
+  }
+  
+  .sos__sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 270px;
+    transform: translateX(-100%);
+    z-index: 900;
+  }
+  
+  .sos__sidebar--open {
+    transform: translateX(0);
+  }
+  
+  .sos__main-content {
+    padding: 1rem;
+  }
+  
+  .sos__info-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .sos__profile-edit-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+  
+  .sos__profile-selected-badge {
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  
+  .sos__trigger-button {
+    width: 100%;
+  }
+  
+  .sos__active-message p {
+    font-size: var(--font-md);
+  }
+  
+  .sos__breathing-circle {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sos__panel-title {
+    font-size: var(--font-xl);
+  }
+  
+  .sos__countdown-circle {
+    width: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+  }
+  
+  .sos__beacon {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .sos__beacon-inner {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .sos__contact-actions {
+    flex-wrap: wrap;
+  }
+  
+  .sos__contact-action {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  .sos__settings-buttons {
+    flex-direction: column;
+  }
+  
+  .sos__settings-button {
+    width: 100%;
+  }
+}
+
+.sos__add-profile-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+  border-radius: var(--radius-md);
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sos__add-profile-button:hover {
+  background-color: #e8e8e8;
+  border-color: #aaa;
+  color: #333;
+}
+
+/* Contacts Panel */
+.sos__contacts-panel {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sos__contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sos__contact-card {
+  background-color: white;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.sos__contact-card--primary {
+  border: 2px solid var(--secondary-color);
+  background-color: rgba(69, 123, 157, 0.05);
+}
+
+.sos__contact-primary-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: var(--font-xs);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+
+.sos__contact-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.sos__contact-action {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.sos__contact-action--call {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.sos__contact-action--call:hover {
+  background-color: #3d6990;
+}
+
+.sos__contact-action--edit {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.sos__contact-action--edit:hover {
+  background-color: #e0e0e0;
+}
+
+.sos__contact-action--delete {
+  background-color: rgba(230, 57, 70, 0.1);
+  color: var(--primary-color);
+}
+
+.sos__contact-action--delete:hover {
+  background-color: rgba(230, 57, 70, 0.2);
+}
+
+.sos__add-contact {
+  background-color: white;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.sos__add-contact-title {
+  font-size: var(--font-lg);
+  margin-bottom: 1.5rem;
+  color: var(--dark-color);
+}
+
+.sos__form-group {
+  margin-bottom: 1rem;
+}
+
+.sos__form-label {
+  display: block;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.sos__form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius-md);
+  font-size: var(--font-md);
+  transition: border-color var(--transition-fast);
+}
+
+.sos__form-input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.1);
+}
+
+.sos__form-submit {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.sos__form-submit:hover {
+  background-color: #3d6990;
+}
+
+/* Map Panel */
+.sos__map-panel {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sos__map-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sos__map-options {
+  background-color: white;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.sos__map-placeholder {
+  background-color: #e9ecef;
+  height: 300px;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.sos__map-center-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background-color: var(--primary-color);
+  border-radius: 50% 50% 50% 0;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  box-shadow: var(--shadow-md);
+}
+
+.sos__map-center-pin::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.sos__map-zoom-controls {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sos__map-zoom {
+  width: 36px;
+  height: 36px;
+  background-color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.sos__map-zoom:hover {
+  background-color: #f0f0f0;
+}
+
+.sos__location-details {
+  background-color: white;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.sos__location-title {
+  font-size: var(--font-lg);
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+}
+
+.sos__location-text {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.sos__location-coords {
+  font-size: var(--font-sm);
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.sos__location-refresh {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  margin-bottom: 1rem;
+}
+
+.sos__location-refresh:hover {
+  background-color: #3d6990;
+}
+
+.sos__location-accuracy {
+  display: flex;
+  align-items: center;
+  background-color: rgba(76, 175, 80, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+}
+
+.sos__accuracy-label {
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.sos__accuracy-value {
+  color: #43a047;
+  font-weight: 600;
+}

@@ -1,0 +1,523 @@
+name: Generate Developer Statistics
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: write
+  pull-requests: read
+  issues: read
+
+jobs:
+  generate-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Generate Enhanced Developer Statistics
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            async function fetchEnhancedContributorStats() {
+              const contributors = new Map();
+              console.log('Fetching enhanced contributor data...');
+              
+              const now = new Date();
+              const threeMonthsAgo = new Date(now.getTime() - (90 * 24 * 60 * 60 * 1000));
+              const oneYearAgo = new Date(now.getTime() - (365 * 24 * 60 * 60 * 1000));
+              
+              console.log('Fetching pull requests...');
+              const allPRs = await github.paginate(github.rest.pulls.list, {
+                owner,
+                repo,
+                state: 'all',
+                sort: 'updated',
+                direction: 'desc',
+                per_page: 100
+              });
+              
+              console.log(`Found ${allPRs.length} PRs`);
+              
+              for (const pr of allPRs) {
+                const author = pr.user.login;
+                const prDate = new Date(pr.created_at);
+                const isRecent = prDate > oneYearAgo;
+                
+                if (!isRecent) continue;
+                
+                if (!contributors.has(author)) {
+                  contributors.set(author, {
+                    username: author,
+                    avatar_url: pr.user.avatar_url,
+                    profile_url: pr.user.html_url,
+                    user_type: pr.user.type || 'User',
+                    merged_prs: 0,
+                    total_prs: 0,
+                    bug_fix_prs: 0,
+                    doc_prs: 0,
+                    reviews_given: 0,
+                    review_comments: 0,
+                    merge_times: [],
+                    large_prs: 0,
+                    commits_recent: 0,
+                    commits_total: 0,
+                    lines_added: 0,
+                    lines_deleted: 0,
+                    issues_opened: 0,
+                    issues_closed: 0,
+                    contribution_weeks: new Set(),
+                    first_contribution: prDate,
+                    last_contribution: prDate
+                  });
+                }
+                
+                const contributor = contributors.get(author);
+                contributor.total_prs++;
+                
+                const weekKey = getWeekKey(prDate);
+                contributor.contribution_weeks.add(weekKey);
+                
+                if (prDate < contributor.first_contribution) {
+                  contributor.first_contribution = prDate;
+                }
+                if (prDate > contributor.last_contribution) {
+                  contributor.last_contribution = prDate;
+                }
+                
+                const prTitle = pr.title.toLowerCase();
+                const labels = pr.labels.map(l => l.name.toLowerCase());
+                
+                if (prTitle.includes('fix') || prTitle.includes('bug') || 
+                    labels.some(l => l.includes('bug') || l.includes('fix'))) {
+                  contributor.bug_fix_prs++;
+                }
+                
+                if (prTitle.includes('doc') || prTitle.includes('readme') ||
+                    labels.some(l => l.includes('doc') || l.includes('documentation'))) {
+                  contributor.doc_prs++;
+                }
+                
+                if (pr.merged_at) {
+                  contributor.merged_prs++;
+                  
+                  const created = new Date(pr.created_at);
+                  const merged = new Date(pr.merged_at);
+                  const ttm = (merged - created) / (1000 * 60 * 60);
+                  contributor.merge_times.push(ttm);
+                  
+                  if (pr.additions && pr.deletions) {
+                    contributor.lines_added += pr.additions;
+                    contributor.lines_deleted += pr.deletions;
+                    
+                    if (pr.additions + pr.deletions > 500) {
+                      contributor.large_prs++;
+                    }
+                  }
+                }
+              }
+              
+              console.log('Fetching issues data...');
+              try {
+                const allIssues = await github.paginate(github.rest.issues.listForRepo, {
+                  owner,
+                  repo,
+                  state: 'all',
+                  since: oneYearAgo.toISOString(),
+                  per_page: 100
+                });
+                
+                for (const issue of allIssues) {
+                  if (issue.pull_request) continue;
+                  
+                  const author = issue.user.login;
+                  if (contributors.has(author)) {
+                    contributors.get(author).issues_opened++;
+                  }
+                  
+                  if (issue.closed_at && issue.closed_by && issue.closed_by.login) {
+                    const closer = issue.closed_by.login;
+                    if (contributors.has(closer)) {
+                      contributors.get(closer).issues_closed++;
+                    }
+                  }
+                }
+                
+                console.log(`Processed ${allIssues.length} issues`);
+              } catch (error) {
+                console.log('Could not fetch issues:', error.message);
+              }
+              
+              console.log('Fetching review data...');
+              const recentPRs = allPRs.slice(0, 150);
+              
+              for (const pr of recentPRs) {
+                try {
+                  const reviews = await github.rest.pulls.listReviews({
+                    owner,
+                    repo,
+                    pull_number: pr.number,
+                    per_page: 100
+                  });
+                  
+                  const reviewComments = await github.rest.pulls.listReviewComments({
+                    owner,
+                    repo,
+                    pull_number: pr.number,
+                    per_page: 100
+                  });
+                  
+                  for (const review of reviews.data) {
+                    const reviewer = review.user.login;
+                    if (contributors.has(reviewer)) {
+                      contributors.get(reviewer).reviews_given++;
+                    }
+                  }
+                  
+                  for (const comment of reviewComments.data) {
+                    const commenter = comment.user.login;
+                    if (contributors.has(commenter)) {
+                      contributors.get(commenter).review_comments++;
+                    }
+                  }
+                  
+                } catch (error) {
+                  continue;
+                }
+              }
+              
+              console.log('Fetching commit data...');
+              try {
+                const commits = await github.paginate(github.rest.repos.listCommits, {
+                  owner,
+                  repo,
+                  since: oneYearAgo.toISOString(),
+                  per_page: 100
+                });
+                
+                console.log(`Found ${commits.length} commits`);
+                
+                const commitCounts = new Map();
+                const recentCommitCounts = new Map();
+                
+                commits.forEach(commit => {
+                  if (commit.author && commit.author.login) {
+                    const author = commit.author.login;
+                    const commitDate = new Date(commit.commit.author.date);
+                    
+                    commitCounts.set(author, (commitCounts.get(author) || 0) + 1);
+                    
+                    if (commitDate > threeMonthsAgo) {
+                      recentCommitCounts.set(author, (recentCommitCounts.get(author) || 0) + 1);
+                    }
+                  }
+                });
+                
+                for (const [author, count] of commitCounts.entries()) {
+                  if (contributors.has(author)) {
+                    contributors.get(author).commits_total = count;
+                    contributors.get(author).commits_recent = recentCommitCounts.get(author) || 0;
+                  }
+                }
+                
+              } catch (error) {
+                console.log('Could not fetch commit data:', error.message);
+              }
+              
+              const validContributors = Array.from(contributors.values()).filter(c => 
+                c.user_type !== 'Bot' && 
+                (c.total_prs > 0 || c.commits_total > 0 || c.reviews_given > 0 || c.issues_closed > 0)
+              );
+              
+              console.log(`Found ${validContributors.length} valid contributors`);
+              return validContributors;
+            }
+
+            function calculateEnhancedScore(contributor) {
+              let score = 0;
+              
+              const mergedPRs = contributor.merged_prs * 20;
+              const bugFixBonus = contributor.bug_fix_prs * 5;
+              const docBonus = contributor.doc_prs * 8;
+              
+              const recentCommits = contributor.commits_recent * 8;
+              const historicalCommits = Math.max(0, contributor.commits_total - contributor.commits_recent) * 4;
+              const commitScore = Math.min(recentCommits + historicalCommits, 200);
+              
+              const linesScore = Math.min((contributor.lines_added || 0) / 10, 50) + 
+                               Math.min((contributor.lines_deleted || 0) / 20, 25);
+              
+              const codeContributions = mergedPRs + bugFixBonus + docBonus + commitScore + linesScore;
+              
+              const issuesResolved = contributor.issues_closed * 12;
+              const issuesCreated = Math.min(contributor.issues_opened * 3, 30);
+              const problemSolving = issuesResolved + issuesCreated;
+              
+              const reviews = contributor.reviews_given * 6;
+              const reviewComments = contributor.review_comments * 3;
+              const collaborationScore = reviews + reviewComments;
+              
+              let acceptanceRate = 0;
+              if (contributor.total_prs > 0) {
+                acceptanceRate = (contributor.merged_prs / contributor.total_prs) * 30;
+              }
+              
+              const largePRPenalty = contributor.large_prs * -5;
+              const qualityScore = acceptanceRate + largePRPenalty;
+              
+              let velocityScore = 0;
+              if (contributor.merge_times.length > 0) {
+                const medianTTM = getMedian(contributor.merge_times);
+                
+                if (medianTTM <= 4) velocityScore = 15;
+                else if (medianTTM <= 24) velocityScore = 10;
+                else if (medianTTM <= 72) velocityScore = 5;
+                else if (medianTTM > 336) velocityScore = -10;
+              }
+              
+              const totalWeeks = Math.ceil((contributor.last_contribution - contributor.first_contribution) / (7 * 24 * 60 * 60 * 1000)) || 1;
+              const activeWeeks = contributor.contribution_weeks.size;
+              const consistencyRatio = activeWeeks / Math.max(totalWeeks, 4);
+              const consistencyBonus = Math.min(consistencyRatio * 25, 25);
+              
+              score = codeContributions + problemSolving + collaborationScore + qualityScore + velocityScore + consistencyBonus;
+              
+              return Math.max(0, Math.round(score));
+            }
+
+            function getMedian(arr) {
+              if (arr.length === 0) return 0;
+              const sorted = [...arr].sort((a, b) => a - b);
+              return sorted[Math.floor(sorted.length / 2)];
+            }
+
+            function getWeekKey(date) {
+              const year = date.getFullYear();
+              const week = Math.ceil(((date - new Date(year, 0, 1)) / 86400000 + 1) / 7);
+              return year + '-W' + week;
+            }
+
+            function getContributorTier(score) {
+              if (score >= 800) return { tier: "🏆 Elite", color: "#FFD700", description: "Top 1% - Maintainer level" };
+              if (score >= 600) return { tier: "🔥 Expert", color: "#FF6B35", description: "Consistent high-impact devloper" };
+              if (score >= 400) return { tier: "⭐ Advanced", color: "#4ECDC4", description: "Regular valuable devloper" };
+              if (score >= 200) return { tier: "📈 Active", color: "#45B7D1", description: "Steady devloper" };
+              if (score >= 100) return { tier: "🌱 Growing", color: "#96CEB4", description: "Learning and devlopeing" };
+              return { tier: "👋 Newcomer", color: "#FFEAA7", description: "Just getting started" };
+            }
+
+            function generateEnhancedReadmeSection(contributors) {
+              const sortedContributors = contributors
+                .filter(c => c.total_prs > 0 || c.commits_total > 0 || c.reviews_given > 0 || c.issues_closed > 0)
+                .sort((a, b) => calculateEnhancedScore(b) - calculateEnhancedScore(a))
+                .slice(0, 30);
+              
+              let readme = '<!-- DEVELOPER_STATS_START -->\n';
+              readme += '## 🏆 Top Developers\n\n';
+              readme += '> **Enhanced Ranking System**: Industry-standard metrics including merged PRs, bug fixes, code reviews, issue resolution, documentation, velocity, and consistency.\n\n';
+              readme += '<div align="center">\n<table>\n<tr>\n';
+              readme += '  <th align="center">Rank</th>\n';
+              readme += '  <th align="center">DEVELOPER</th>\n';
+              readme += '  <th align="center">Tier</th>\n';
+              readme += '  <th align="center">🔀 PRs</th>\n';
+              readme += '  <th align="center">🐛 Fixes</th>\n';
+              readme += '  <th align="center">👀 Reviews</th>\n';
+              readme += '  <th align="center">🎯 Issues</th>\n';
+              readme += '  <th align="center">📝 Commits</th>\n';
+              readme += '  <th align="center">⚡ Speed</th>\n';
+              readme += '  <th align="center">🏆 Score</th>\n';
+              readme += '</tr>\n';
+              
+              if (sortedContributors.length === 0) {
+                readme += '<tr><td colspan="10" align="center"><em>No contributor data available yet. Run the workflow after some activity!</em></td></tr>\n';
+              } else {
+                sortedContributors.forEach((contributor, index) => {
+                  const rank = index + 1;
+                  const score = calculateEnhancedScore(contributor);
+                  const tier = getContributorTier(score);
+                  
+                  const acceptanceRate = contributor.total_prs > 0 ? 
+                    Math.round((contributor.merged_prs / contributor.total_prs) * 100) : 0;
+                  
+                  let ttmDisplay = 'N/A';
+                  if (contributor.merge_times.length > 0) {
+                    const medianTTM = getMedian(contributor.merge_times);
+                    if (medianTTM < 1) ttmDisplay = Math.round(medianTTM * 60) + 'min';
+                    else if (medianTTM < 24) ttmDisplay = Math.round(medianTTM) + 'h';
+                    else ttmDisplay = Math.round(medianTTM / 24) + 'd';
+                  }
+                  
+                  let rankEmoji = '';
+                  if (rank === 1) rankEmoji = '🥇';
+                  else if (rank === 2) rankEmoji = '🥈';
+                  else if (rank === 3) rankEmoji = '🥉';
+                  else if (rank <= 10) rankEmoji = '🏅';
+                  else rankEmoji = '#' + rank;
+                  
+                  const consistencyWeeks = contributor.contribution_weeks.size;
+                  
+                  readme += '<tr>\n';
+                  readme += '  <td align="center"><strong>' + rankEmoji + '</strong></td>\n';
+                  readme += '  <td align="center">\n';
+                  readme += '    <a href="' + contributor.profile_url + '">\n';
+                  readme += '      <img src="' + contributor.avatar_url + '" width="32" height="32" style="border-radius: 50%; border: 2px solid ' + tier.color + ';" />\n';
+                  readme += '      <br />\n';
+                  readme += '      <sub><strong>' + contributor.username + '</strong></sub>\n';
+                  readme += '    </a>\n';
+                  readme += '  </td>\n';
+                  readme += '  <td align="center">\n';
+                  readme += '    <span style="color: ' + tier.color + '; font-weight: bold;">' + tier.tier + '</span>\n';
+                  readme += '  </td>\n';
+                  readme += '  <td align="center">\n';
+                  readme += '    <strong>' + contributor.merged_prs + '</strong>\n';
+                  readme += '    <br />\n';
+                  readme += '    <sub>' + acceptanceRate + '% rate</sub>\n';
+                  readme += '  </td>\n';
+                  readme += '  <td align="center">' + (contributor.bug_fix_prs + contributor.doc_prs) + '</td>\n';
+                  readme += '  <td align="center">\n';
+                  readme += '    ' + contributor.reviews_given + '\n';
+                  readme += '    <br />\n';
+                  readme += '    <sub>+' + contributor.review_comments + ' comments</sub>\n';
+                  readme += '  </td>\n';
+                  readme += '  <td align="center">\n';
+                  readme += '    ' + contributor.issues_closed + '\n';
+                  readme += '    <br />\n';
+                  readme += '    <sub>' + contributor.issues_opened + ' opened</sub>\n';
+                  readme += '  </td>\n';
+                  readme += '  <td align="center">\n';
+                  readme += '    ' + contributor.commits_total + '\n';
+                  readme += '    <br />\n';
+                  readme += '    <sub>' + contributor.commits_recent + ' recent</sub>\n';
+                  readme += '  </td>\n';
+                  readme += '  <td align="center">\n';
+                  readme += '    <code>' + ttmDisplay + '</code>\n';
+                  readme += '    <br />\n';
+                  readme += '    <sub>' + consistencyWeeks + 'w active</sub>\n';
+                  readme += '  </td>\n';
+                  readme += '  <td align="center">\n';
+                  readme += '    <strong style="color: ' + tier.color + ';">' + score + '</strong>\n';
+                  readme += '  </td>\n';
+                  readme += '</tr>\n';
+                });
+              }
+              
+              readme += '</table>\n</div>\n\n';
+              readme += '## 📊 Scoring Methodology\n\n';
+              readme += 'Our enhanced ranking system uses **industry-standard metrics** based on GitHub Octoverse, OSCI, and open source best practices:\n\n';
+              readme += '### 🎯 **Core Contributions (60% of score)**\n';
+              readme += '| Metric | Weight | Description |\n';
+              readme += '|--------|---------|-------------|\n';
+              readme += '| **🔀 Merged PRs** | **20x** | Successfully merged pull requests (most important) |\n';
+              readme += '| **🐛 Bug Fixes** | **+5x** | Bug fix PRs get bonus points |\n';
+              readme += '| **📖 Documentation** | **+8x** | Documentation PRs are highly valued |\n';
+              readme += '| **📝 Recent Commits** | **8x** | Commits from last 3 months |\n';
+              readme += '| **📝 Historical Commits** | **4x** | Older commits (capped at 200 total points) |\n';
+              readme += '| **📏 Lines Changed** | **0.01-0.02x** | Code impact measurement |\n\n';
+              readme += '### 🤝 **Collaboration & Community (25% of score)**\n';
+              readme += '| Metric | Weight | Description |\n';
+              readme += '|--------|---------|-------------|\n';
+              readme += '| **👀 Code Reviews** | **6x** | PR reviews given to others |\n';
+              readme += '| **💬 Review Comments** | **3x** | Detailed review feedback |\n';
+              readme += '| **🎯 Issues Closed** | **12x** | Problems solved |\n';
+              readme += '| **🐛 Issues Opened** | **3x** | Problems identified (capped) |\n\n';
+              readme += '### ⚡ **Quality & Velocity (15% of score)**\n';
+              readme += '| Metric | Impact | Description |\n';
+              readme += '|--------|---------|-------------|\n';
+              readme += '| **✅ PR Acceptance Rate** | **30x ratio** | Quality indicator |\n';
+              readme += '| **⚡ Time-to-Merge** | **±15 points** | Speed bonus/penalty |\n';
+              readme += '| **📏 Large PR Penalty** | **-5x** | Encourages smaller, reviewable PRs |\n';
+              readme += '| **🔄 Consistency** | **+25 max** | Regular contribution pattern |\n\n';
+              readme += '### 🏆 **Developer Tiers**\n\n';
+              readme += '- **🏆 Elite (800+ pts)**: Top 1% - Maintainer level Developer\n';
+              readme += '- **🔥 Expert (600-799 pts)**: Consistent high-impact Developer\n';
+              readme += '- **⭐ Advanced (400-599 pts)**: Regular & valuable Developer\n';
+              readme += '- **📈 Active (200-399 pts)**: Steady Developer\n';
+              readme += '- **🌱 Growing (100-199 pts)**: Developer [Learning]\n';
+              readme += '- **👋 Newcomer (0-99 pts)**: Just getting started\n\n';
+              readme += '<div align="center">\n';
+              readme += '  <sub>📈 Updated automatically every Monday at 00:00 UTC | Last update: ' + new Date().toISOString().replace('T', ' ').replace('Z', '') + ' | \n';
+              readme += '  <a href="https://github.com/' + owner + '/' + repo + '/actions">⚙️ View Workflow</a></sub>\n';
+              readme += '</div>\n';
+              readme += '<!-- DEVELOPR_STATS_END -->';
+              
+              return readme;
+            }
+
+            try {
+              console.log('Starting enhanced contributor analysis...');
+              const contributors = await fetchEnhancedContributorStats();
+              console.log(`Analyzing ${contributors.length} contributors with enhanced metrics...`);
+              
+              const readmeSection = generateEnhancedReadmeSection(contributors);
+              
+              let readmeContent = '';
+              try {
+                readmeContent = fs.readFileSync('README.md', 'utf8');
+              } catch (error) {
+                console.log('README.md not found, creating new one...');
+                readmeContent = '# ' + repo + '\n\nWelcome to our project! Check out our amazing contributors below.\n\n';
+              }
+              
+              const startMarker = '<!-- DEVELOPER_STATS_START -->';
+              const endMarker = '<!-- DEVELOPER_STATS_END -->';
+              
+              const startIndex = readmeContent.indexOf(startMarker);
+              const endIndex = readmeContent.indexOf(endMarker);
+              
+              if (startIndex !== -1 && endIndex !== -1) {
+                readmeContent = readmeContent.substring(0, startIndex) + 
+                               readmeSection + 
+                               readmeContent.substring(endIndex + endMarker.length);
+              } else {
+                readmeContent += '\n\n' + readmeSection;
+              }
+              
+              fs.writeFileSync('README.md', readmeContent);
+              console.log('Enhanced contributor statistics generated successfully!');
+              
+              const topContributors = contributors
+                .sort((a, b) => calculateEnhancedScore(b) - calculateEnhancedScore(a))
+                .slice(0, 5);
+              
+              console.log('\nTop 5 DEVELOPERS:');
+              topContributors.forEach((c, i) => {
+                const score = calculateEnhancedScore(c);
+                const tier = getContributorTier(score);
+                console.log(`${i + 1}. ${c.username}: ${score} points (${tier.tier})`);
+              });
+              
+            } catch (error) {
+              console.error('Error in enhanced contributor analysis:', error);
+              process.exit(1);
+            }
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          if git diff --staged --quiet; then
+            echo "No changes to DEVELOPER statistics"
+          else
+            git commit -m "🏆 Update enhanced DEVELOPER statistics"
+            git push
+            echo "DEVELOPER statistics updated and pushed!"
+          fi

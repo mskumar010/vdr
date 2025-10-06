@@ -1,0 +1,785 @@
+.why-vdr-page .why-we-container {
+  --primary-color: #2563eb;
+  --primary-dark: #1e40af;
+  --primary-light: #60a5fa;
+  --accent-color: #10b981;
+  --accent-light: #5eead4;
+  --neutral-900: #98b0e4;
+  --neutral-800: #1f2937;
+  --neutral-700: #374151;
+  --neutral-600: #4b5563;
+  --neutral-500: #6b7280;
+  --neutral-400: #9ca3af;
+  --neutral-300: #d1d5db;
+  --neutral-200: #e5e7eb;
+  --neutral-100: #f3f4f6;
+  --neutral-50: #f9fafb;
+  --danger: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+
+  /* Container properties */
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.why-vdr-page body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--neutral-800);
+  line-height: 1.6;
+  background-color: var(--background-color-main);
+}
+
+.why-vdr-page h1,
+.why-vdr-page h2,
+.why-vdr-page h3,
+.why-vdr-page h4,
+.why-vdr-page h5,
+.why-vdr-page h6 {
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  color: var(--neutral-900);
+}
+
+.why-vdr-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.why-vdr-page h2 {
+  font-size: 2.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.why-vdr-page h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.why-vdr-page p {
+  margin-bottom: 1.5rem;
+  color: var(--neutral-700);
+}
+
+/* Container Styles */
+.why-vdr-page .why-we-container {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Section Styles */
+.why-vdr-page .content-section {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-vdr-page .section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.why-vdr-page .section-underline {
+  height: 4px;
+  width: 80px;
+  background-color: var(--color-primary);
+  margin: 0 auto;
+  border-radius: var(--radius-xs);
+}
+
+/* Hero Section */
+.why-vdr-page .hero-section {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary) 100%
+  );
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-vdr-page .hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/api/placeholder/1600/900");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.why-vdr-page .hero-content {
+  max-width: 800px;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.why-vdr-page .hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.why-vdr-page .hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: var(--neutral-100);
+}
+
+.why-vdr-page .cta-button {
+  background-color: var(--color-accent);
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: --transition-background-color 0.3s, var(--transition-slide);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius:7px;
+}
+
+.why-vdr-page .cta-button:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+/* About Section */
+.why-vdr-page .about-section {
+  background-color: var(--background-color-main);
+}
+
+.why-vdr-page .two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.why-vdr-page .image-container {
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.why-vdr-page .image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.why-vdr-page .image-container:hover img {
+  transform: scale(1.03);
+}
+
+/* Mission Section */
+.why-vdr-page .mission-section {
+  background-color: var(--background-color-main);
+}
+
+.why-vdr-page .problem-solution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.why-vdr-page .problem-card,
+.why-vdr-page .solution-card {
+  background-color: var(--background-color-card);
+  padding: 1.8rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  height: 100%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  transition: var(--transition-slide), box-shadow 0.3s ease;
+}
+.why-vdr-page .problem-card:hover,
+.why-vdr-page .solution-card:hover {
+  transform: translateY(-5px);
+}
+
+.why-vdr-page .problem-card {
+  border-left: 6px solid var(--color-error);
+  font-size: 1rem;
+  text-align: left;
+}
+
+.why-vdr-page .solution-card {
+  border-left: 6px solid var(--color-success);
+}
+
+.why-vdr-page .problem-card h3,
+.why-vdr-page .solution-card h3 {
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.why-vdr-page .problem-card ul,
+.why-vdr-page .solution-card ul {
+  list-style-type: none;
+
+}
+
+.why-vdr-page .problem-card li,
+.why-vdr-page .solution-card li {
+  display: flex;
+  align-items: left;
+  margin-bottom: 1rem;
+  text-align:left;
+  justify-content:left;
+  gap: 20px;
+}
+
+.why-vdr-page .icon {
+  margin-right: 1rem;
+  font-size: 1.25rem;
+}
+
+.why-vdr-page .problem-card .icon {
+  color: var(--color-error);
+}
+
+.why-vdr-page .solution-card .icon {
+  color: var(--color-success);
+}
+
+/* Process Section */
+.why-vdr-page .process-section {
+  background-color: var(--background-color);
+}
+
+.why-vdr-page .process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.why-vdr-page .step-card {
+  background-color: var(--background-color-card);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  position: relative;
+  transition: var(--transition-slide), box-shadow 0.3s ease;
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--radius-md);
+
+}
+
+.why-vdr-page .step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow);
+}
+
+.why-vdr-page .step-number {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  background-color: var(--color-primary);
+  color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+.why-vdr-page .trust-badge {
+  background-color: var(--background-color-card);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: var(--card-shadow);
+  margin: 3rem auto;
+  max-width: 500px;
+}
+
+.why-vdr-page .badge-icon {
+  flex: 0 0 60px;
+}
+
+.why-vdr-page .shield-icon {
+  width: 60px;
+  height: 60px;
+  color: var(--color-accent);
+}
+
+.why-vdr-page .badge-text h4 {
+  margin-bottom: 0.25rem;
+  color: var(--color-success);
+}
+
+.why-vdr-page .badge-text p {
+  margin-bottom: 0;
+  font-size: 0.875rem;
+}
+
+.why-vdr-page .stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.why-vdr-page .stat-item {
+  padding: 2rem;
+}
+
+.why-vdr-page .stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.why-vdr-page .stat-label {
+  font-size: 1rem;
+  color: var(--neutral-600);
+}
+
+/* Why Us Section */
+.why-vdr-page .why-us-section {
+  background-color: var(--neutral-50);
+}
+
+.why-vdr-page .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.why-vdr-page .feature-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  transition: var(--transition-slide), box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.why-vdr-page .feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.why-vdr-page .feature-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1.5rem;
+}
+
+.why-vdr-page .feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Testimonials Section */
+.why-vdr-page .testimonials-section {
+  background-color: var(--background-color-main);
+}
+
+.why-vdr-page .testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.why-vdr-page .testimonial-card {
+  background-color: var(--background-color-card);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  transition: var(--transition-slide), box-shadow 0.3s ease;
+}
+.why-vdr-page .testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow);
+}
+
+.why-vdr-page .testimonial-content {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--primary-light);
+  margin-bottom: 1.5rem;
+}
+
+.why-vdr-page .testimonial-content p {
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+.why-vdr-page .testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.why-vdr-page .author-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.why-vdr-page .author-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.why-vdr-page .author-info h4 {
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.why-vdr-page .author-info p {
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: var(--neutral-500);
+}
+
+/* CTA Section */
+.why-vdr-page .cta-section {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 100%
+  );
+  padding: 5rem 2rem;
+  text-align: center;
+  color: white;
+}
+
+.why-vdr-page .cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.why-vdr-page .cta-content h2 {
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.why-vdr-page .cta-content p {
+  color: var(--neutral-100);
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+}
+
+.why-vdr-page .cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.why-vdr-page .primary-cta {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.3s, var(--transition-slide);
+}
+
+.why-vdr-page .primary-cta:hover {
+  background-color: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.why-vdr-page .secondary-cta {
+  background-color: transparent;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border: 2px solid white;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color;
+}
+
+.whyVdr-faq-container {
+  min-width: 400px;
+  margin: 2rem 10%;
+  padding: 2rem;
+  background: rgb(255, 255, 255);
+  border-radius: var(--border-radius);
+  border-radius:px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  width: 81vw;
+  margin-top: 90px;
+  transition: all 0.3s ease-in-out;
+}
+
+.whyVdr-faq-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.whyVdr-faq-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.whyVdr-faq-item {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0;
+}
+
+.whyVdr-faq-item input {
+  display: none;
+}
+
+.whyVdr-faq-item label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.whyVdr-faq-item label:hover {
+  color: var(--primary-color);
+}
+
+.whyVdr-faq-item .icon {
+  transition: transform var(--transition);
+}
+
+.whyVdr-faq-item input:checked ~ label .icon {
+  transform: rotate(45deg);
+}
+
+.whyVdr-faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #374151;
+}
+
+.whyVdr-faq-item input:checked ~ .whyVdr-faq-content {
+  max-height: 500px;
+  margin-top: 0.5rem;
+}
+.why-vdr-page .mainheader{
+  text-align: center;
+}
+h1.our-founder-and-devs {
+  text-align: center;
+  font-weight: 700;
+  color: #3f3d56;
+  font-size: 2rem;
+  margin-top: 3rem;
+  text-decoration: underline;
+}
+@media (max-width: 800px) {
+  .why-vdr-page p {
+    margin-bottom: 1rem;
+    color: var(--neutral-700);
+    font-size: 10px;
+  }
+  .why-vdr-page h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .why-vdr-page h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .why-vdr-page .Probletext {
+    font-size: 12px;
+    text-align: center;
+  }
+  .why-vdr-page .problem-card,
+  .why-vdr-page .solution-card {
+    height: 89%;
+  }
+  .why-vdr-page .Soltext {
+    font-size: 12px;
+  }
+  .why-vdr-page .mainheader {
+    text-align: center;
+    font-size: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .why-vdr-page p {
+    margin-bottom: 1rem;
+    color: var(--neutral-700);
+    font-size: 9px;
+  }
+  .why-vdr-page h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .why-vdr-page h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .why-vdr-page .Probletext {
+    font-size: 10px;
+  }
+
+  /* Mobile view */
+  @media (max-width: 768px) {
+    .why-vdr-page .Probletext {
+      text-align: start;
+    }
+  }
+
+  .why-vdr-page .problem-card,
+  .why-vdr-page .solution-card {
+    height: 89%;
+  }
+  .why-vdr-page .Soltext {
+    font-size: 10px;
+  }
+  .why-vdr-page .mainheader {
+    text-align: center;
+    font-size: 30px;
+  }
+}
+@media (max-width: 1024px) {
+  .why-vdr-page .two-column-grid,
+  .why-vdr-page .problem-solution-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-vdr-page .content-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .why-vdr-page .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .why-vdr-page .hero-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-vdr-page .feature-card,
+  .why-vdr-page .testimonial-card,
+  .why-vdr-page .step-card,
+  .why-vdr-page .stat-item {
+    padding: 1.5rem;
+  }
+
+  .why-vdr-page .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .why-vdr-page .cta-content p {
+    font-size: 1rem;
+  }
+
+  .why-vdr-page .mainheader {
+    font-size: 28px;
+  }
+
+  .why-vdr-page h1 {
+    font-size: 1.75rem;
+  }
+
+  .why-vdr-page h2 {
+    font-size: 1.75rem;
+  }
+
+  .why-vdr-page h3 {
+    font-size: 1.25rem;
+  }
+
+  .why-vdr-page p {
+    font-size: 0.875rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .why-vdr-page .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .why-vdr-page .hero-content p {
+    font-size: 0.875rem;
+  }
+
+  .why-vdr-page .stat-number {
+    font-size: 1.75rem;
+  }
+
+  .why-vdr-page .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .why-vdr-page .cta-buttons {
+    flex-direction: column;
+  }
+
+  .why-vdr-page .mainheader {
+    font-size: 24px;
+  }
+
+  .why-vdr-page .step-number {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  .whyVdr-faq-container {
+    min-width: 400px;
+    margin: 10px 10px 10px 10px ;
+    padding: 2rem;
+    background: rgb(255, 255, 255);
+    border-radius: var(--border-radius);
+    border-radius:px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    width: 81vw;
+    margin-top: 90px;
+    transition: all 0.3s ease-in-out;
+  }
+}

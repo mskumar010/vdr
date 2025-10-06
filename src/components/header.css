@@ -1,0 +1,235 @@
+/*header icon styling*/
+.headericons{
+  width: 20px;
+  height: 20px;
+  display: none;
+  color: aliceblue;
+}
+/* .header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 2s ease-in-out;
+  z-index: -1;
+  object-fit: cover;
+} */
+
+/* ============ NAV ============ */
+.header-container{
+  width: 100%;   
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.5em;
+  position: relative;
+  box-shadow: 0 4px 200px rgba(141, 141, 141, 0.374);
+  /* background: linear-gradient(0deg,#00A9FF,white); */
+  /* background:linear-gradient(90deg,--primary-); */
+  /* background: linear-gradient( 170deg ,rgb(21, 247, 213),rgb(36, 105, 255)); */
+}
+
+/* .header-nav-container:hover {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+} */
+
+/* ============ LOGO ============ */
+.header-logo {
+  height: 3.5em;
+  width: auto;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* ============ TOGGLE BUTTON ============ */
+.toggle-button {
+  display: none; /* default hidden on large screens */
+  background-color: #4da6ff;
+  color: #fff;
+  border: none;
+
+  position: absolute;
+  right: 0;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 1001;
+  margin-left: auto; /* pushes it to the right inside a flex container */
+}
+
+/* Make it visible in mobile view */
+@media (max-width: 700px) {
+  .toggle-button {
+    display: none;
+  }
+
+  .header-nav-container {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+  }
+} 
+
+/* ============ NAV MENU ============ */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+/* ============ LINKS ============ */
+.nav-links,
+.nav-links-open {
+  display: flex;
+  gap: 1em;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.nav-link:hover {
+  color: #2c7dff; 
+  background: linear-gradient(to right, rgba(255, 234, 253, 0.731), rgba(173, 164, 255, 0.817));
+}
+
+/* ============ TABLET ============ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-link {
+    font-size: 0.6rem;
+  }
+
+  .header-logo {
+    height: 4em;
+  }
+}
+
+/* ============ DESKTOP ============ */
+@media (min-width: 1025px) {
+  .nav-link {
+    font-size: 0.8rem;
+  }
+
+  .header-logo {
+    height: 4.5em;
+  }
+}
+
+/* ============ SOS & LOGIN ============ */
+.sos-link {
+  color: #ff4d4d;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.sos-link:hover {
+  color: #1083f6;
+}
+
+.login-button-header {
+  color: #535353;
+  cursor: pointer;
+}
+
+.login-button-header:hover {
+  color: #007bff;
+}
+/*=================size=========*/
+@media(max-width:900px){
+  .nav-link {
+    font-size: 0.5rem;
+  }
+}
+@media(max-width:820px){
+  .nav-link {
+    font-size: 0.4rem;
+  }
+}
+@media(max-width:740px){
+  .nav-link {
+    font-size: 0.35rem;
+  }
+}
+/* ============ MOBILE ============ */
+@media (max-width: 700px) {
+  .nav-links {
+    display: none;
+  }
+
+  .toggle-button {
+    display: none;
+  }
+
+  .nav-links-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, #65b0ee, #2060ba);
+    padding: 1.5em 1em;
+    z-index: 999;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav-link {
+    color: #fff;
+    font-size: 1rem;
+    padding: 12px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #000;
+  }
+  .headericons{
+    display: block;
+  }
+}
+.input-header-mobile{
+  display: flex;
+  gap: 20px;
+}
+.searchbar-input{
+  display: none;
+}
+.searchbar-input1{
+  border: 0.5px solid rgb(147, 147, 147);
+  width: 250px;
+  height: 40px;
+  display: none;
+  border-radius: 10px;
+}
+@media(max-width:698px){
+ .searchbar-input1{
+     display: block;
+ }
+ .header-nav-container{
+  background-color: #d7f1f9;
+
+ }
+ 
+}
+@media(max-width:440px){
+  .header-logo{
+    height: 2.5em;
+
+  }
+  
+}

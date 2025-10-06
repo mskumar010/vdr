@@ -1,0 +1,14 @@
+* {
+  transition: var(--transition-slide);
+}
+.content-wrapper {
+  min-height: 50vh;
+  height: fit-content;
+  /* padding: 20px 0px; */
+  background-color: var(--color-background-main);
+}
+@media screen and (max-width: 768px) {
+  .content-wrapper {
+    margin-bottom: 5em;
+  }
+}

@@ -1,0 +1,540 @@
+.patientDashboard-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+  }
+  
+  .patientSidebar {
+    background-color: #ffffff;
+    box-shadow: 10px 0 15px -3px rgba(0, 0, 0, 0.1),
+               4px 0 6px -4px rgba(0, 0, 0, 0.1); 
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .patientSidebar-open {
+    width:12rem; 
+  }
+  
+  .patientSidebar-collapsed {
+    width: 3.5rem; 
+  }
+  
+  .patientSidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .patientSidebar-title {
+    font-weight: bold;
+    color: #1e3a8a; 
+  }
+  
+  .patientSidebar-toggle {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .patientSidebar-toggle:hover {
+    background-color: #e5e7eb; 
+  }
+  
+  .patientSidebar-nav {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .patientMain-content {
+    flex: 1;
+    height: 100vh;
+    overflow: auto;
+  }
+  
+  .patientMain-inner {
+    padding: 1.5rem;
+  }
+  
+  .patientMain-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1f2937; /* text-gray-800 */
+    margin-bottom: 1.5rem;
+  }
+  
+  .profileCard {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profileHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .profileImage {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 9999px;
+    margin-right: 1rem;
+  }
+  
+  .profileName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937; /* text-gray-800 */
+  }
+  
+  .profileAge {
+    color: #4b5563; /* text-gray-600 */
+  }
+  
+  .profileSectionTitle {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profileDetails {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: #4b5563;
+  }
+  
+  .profileDetails li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .profileSettingsBtn {
+    margin-top: 1rem;
+    color: #2563eb; /* text-blue-600 */
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+  
+  .profileSettingsBtn:hover {
+    color: #1e40af; /* hover:text-blue-800 */
+  }
+  
+  .navItem {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    color: #374151; 
+  }
+  
+  .navItem:hover {
+    background-color: #f3f4f6; 
+  }
+  
+  .navItem-active {
+    background-color: #dbeafe; 
+    color: #1d4ed8; 
+    border-right: 4px solid #1d4ed8; 
+  }
+  
+  .navItem-icon {
+    font-size: 1.25rem; 
+  }
+  
+  .navItem-title {
+    margin-left: 1rem;
+    font-size: 0.875rem; 
+    font-weight: 500;
+  }
+  
+  .consultationCard {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1rem;
+  }
+  
+  .consultationCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .consultationCardDate {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937; /* gray-800 */
+  }
+  
+  .consultationCardStatus {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .consultation-status-completed {
+    background-color: #d1fae5; /* green-100 */
+    color: #065f46; /* green-800 */
+  }
+  
+  .consultation-status-upcoming {
+    background-color: #dbeafe; /* blue-100 */
+    color: #1e40af; /* blue-800 */
+  }
+  
+  .consultation-status-scheduled {
+    background-color: #fef9c3; /* yellow-100 */
+    color: #92400e; /* yellow-800 */
+  }
+  
+  .consultationCardTime,
+  .consultationCardPatient,
+  .consultationCardType {
+    font-size: 0.875rem;
+    color: #4b5563; /* gray-600 */
+    margin-bottom: 0.25rem;
+  }
+  
+  .consultationCardContainer {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .consultationCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+  
+  .consultationCardPatientName {
+    font-weight: 600;
+    font-size: 1.8rem; /* text-lg */
+    color: #1f2937; /* text-gray-800 */
+  }
+  
+  .consultationCardTimeInfo {
+    display: flex;
+    align-items: center;
+    color: #4b5563; /* text-gray-600 */
+    font-size: 0.875rem; /* text-sm */
+    margin-top: 0.25rem;
+  }
+  
+  .consultationClockIcon {
+    margin-right: 0.25rem;
+  }
+  
+  .consultationCardStatus {
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .consultationCardTypeText {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-bottom: 0.75rem;
+  }
+  
+  .consultationCardButton {
+    color: #2563eb; /* text-blue-600 */
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .consultationCardButton:hover {
+    color: #1e40af; /* text-blue-800 */
+  }
+  
+  .consultationFilterButtonGroup {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .consultationFilterButton {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: #e5e7eb; /* gray-200 */
+    color: #374151; /* gray-700 */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .consultationFilterButtonActive {
+    background-color: #2563eb; /* blue-600 */
+    color: #ffffff;
+  }
+  
+  .consultationCardGrid {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .consultationCardGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .consultationCardGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .diagnosisReportContainer {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .diagnosisReportHeader {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .diagnosisReportTitle {
+    font-size: 1.7rem;
+    text-align: center;
+    font-weight: bold;
+    color: #1f2937;
+  }
+  
+  .diagnosisReportTableWrapper {
+    overflow-x: auto;
+  }
+  
+  .diagnosisReportTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .diagnosisReportTableHead {
+    background-color: #f9fafb;
+  }
+  
+  .diagnosisReportTh {
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  
+  .diagnosisReportTableBody tr {
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .diagnosisReportTd {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    white-space: nowrap;
+  }
+  
+  .diagnosisReportTd.name {
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  .diagnosisReportTd.action {
+    font-weight: 500;
+  }
+  
+  .diagnosisDownloadBtn {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #2563eb;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .diagnosisDownloadBtn:hover {
+    color: #1e40af;
+  }
+  
+  .diagnosisDownloadIcon {
+    margin-right: 0.25rem;
+  }
+  
+  .prescriptionFilterButtons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .prescriptionFilterBtn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: #e5e7eb;
+    color: #374151;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .prescriptionFilterBtn.active {
+    background-color: #2563eb;
+    color: #ffffff;
+  }
+  
+  .prescriptionListContainer {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .prescriptionCard {
+    padding: 1rem;
+    border-bottom: 1px solid #000000;
+  }
+  
+  .prescriptionCard:last-child {
+    border-bottom: none;
+  }
+  
+  .prescriptionCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .prescriptionName {
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+  
+  .prescriptionDetails {
+    color: #4b5563;
+    margin-top: 0px;
+  }
+  
+  .prescriptionNotes {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .prescriptionViewBtn {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #2563eb;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .prescriptionViewBtn:hover {
+    color: #1e40af;
+  }
+  
+  .notificationsContainer {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notificationsHeader {
+    padding: 1rem;
+    border-bottom: 1px solid #000000;
+  }
+  
+  .notificationsTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  .notificationCard {
+    padding: 1rem;
+    border-bottom: 1px solid #020202;
+  }
+  
+  .notificationCard:last-child {
+    border-bottom: none;
+  }
+  
+  .notificationContent {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .iconContainer {
+    padding: 0.75rem;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-right: 1rem;
+  }
+  
+  .appointmentBgColor {
+    background-color: #bfdbfe;
+  }
+  
+  .reportBgColor {
+    background-color: #d1fae5;
+  }
+  
+  .reminderBgColor {
+    background-color: #fef3c7;
+  }
+  
+  .defaultBgColor {
+    background-color: #f3f4f6;
+  }
+  
+  .notificationMessage {
+    color: #1f2937;
+  }
+  
+  .notificationTime {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  .notificationCard:hover {
+    background-color: #f9fafb;
+  }

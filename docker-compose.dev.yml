@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development  # Use the development build stage
+    ports:
+      - "3000:5173"  # Expose Vite's default port
+    volumes:
+      - .:/app  # Mount the app code directly from your local machine
+      - /app/node_modules  # Persist node_modules inside container (avoid conflicts)
+    environment:
+      - NODE_ENV=development
+    command: npm run dev  # Run the Vite dev server
+    restart: always
+    networks:
+      - devnet
+
+networks:
+  devnet:
+    driver: bridge

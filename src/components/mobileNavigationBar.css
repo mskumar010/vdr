@@ -1,0 +1,99 @@
+/* BottomNavBar.css */
+.bottom-nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  background-color: #d7f1f9;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 20px;
+    border-top: 1px solid #ccc;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    /* Initially, the bottom nav bar is hidden on smaller screens */
+    display: none;
+  }
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-item i {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .nav-item .nav-label {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  /* Active state */
+  .nav-item.active i {
+    color: #007bff;
+  }
+  
+  .nav-item.active .nav-label {
+    color: #007bff;
+  }
+  
+  /* Hover effects */
+  .nav-item:hover i {
+    color: #007bff;
+  }
+  
+  .nav-item:hover .nav-label {
+    color: #007bff;
+  }
+  
+  /* Media Queries for smaller screens */
+  @media (max-width: 698px) {
+    .bottom-nav-bar {
+      display: flex;
+      justify-content: space-around; /* Space out the nav items evenly */
+      padding: 5px 10px;
+    }
+  
+    .nav-item {
+      flex-direction: column; /* Keep items in column layout */
+      padding: 5px 0; /* Add padding for better spacing between items */
+    }
+  
+    .nav-item i {
+      font-size: 20px; /* Smaller icons on mobile */
+    }
+  
+    .nav-item .nav-label {
+      font-size: 10px; /* Smaller text on mobile */
+    }
+  
+    /* Adjust bottom padding and icon size for more space on mobile */
+    .bottom-nav-bar {
+      padding: 8px 16px;
+    }
+    
+    /* Add hover effect for mobile */
+    .nav-item:hover i,
+    .nav-item:hover .nav-label {
+      color: #0056b3; /* Slightly darker color on hover */
+    }
+  }
+  
+  /* For very small devices (extra mobile) */
+  @media (max-width: 500px) {
+    .nav-item i {
+      font-size: 18px; /* Even smaller icons for very small screens */
+    }
+  
+    .nav-item .nav-label {
+      font-size: 9px; /* Even smaller text for very small screens */
+    }
+  }
+  

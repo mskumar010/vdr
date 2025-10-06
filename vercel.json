@@ -1,0 +1,10 @@
+{
+    "rewrites": [
+      { "source": "/manifest.webmanifest", "destination": "/manifest.webmanifest" },
+      { "source": "/sw.js", "destination": "/sw.js" },
+      { "source": "/offline.html", "destination": "/offline.html" },
+      { "source": "/icons/:splat", "destination": "/icons/:splat" },
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
+  }
+  

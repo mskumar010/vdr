@@ -1,0 +1,33 @@
+# # File: .github/workflows/update_contributors.yml
+
+# name: "Automate Contributors List"
+
+# on:
+#   push:
+#     branches:
+#       - main  # Trigger on pushes to main branch
+
+# jobs:
+#   update-contributors:
+#     name: "Update CONTRIBUTORS Section in README"
+#     runs-on: ubuntu-latest
+
+#     permissions:
+#       contents: write        # Required to modify README directly
+#       pull-requests: write   # Required if branch is protected
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+
+#       - name: Generate Contributors List
+#         uses: akhilmhdh/contributors-readme-action@v2.3.11
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           readme_path: README.md      # Target file
+#           image_size: 100             # Avatar size in px
+#           columns_per_row: 6          # Layout control
+#           use_username: false         # Use full names by default
+#           commit_message: "docs: update CONTRIBUTORS list"
+#           auto_detect_branch_protection: true  # PR auto for protected branches

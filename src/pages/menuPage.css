@@ -1,0 +1,147 @@
+/* ====================================
+  MENU PAGE - GLASSMORPHISM SETTINGS PANEL
+  Uses variables and styles from index.css (from line 131+)
+==================================== */
+
+.menu-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: var(--space-2xl);
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-glass);
+  border: 1px solid var(--border-glass);
+}
+
+.menu-heading {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+.menu-section {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+  border: 1px solid var(--border-glass);
+}
+
+.menu-section h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.menu-btn-group {
+  display: flex;
+  gap: var(--space-lg);
+  flex-direction: column;
+}
+
+.menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-sm);
+  min-width: 100px;
+}
+
+.menu-btn.active {
+  background: var(--gradient-primary);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-md);
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.menu-select {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  max-width: 220px;
+}
+
+.menu-select:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
+  background: var(--bg-glass-hover);
+}
+
+.menu-account-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: var(--color-primary);
+  margin-right: var(--space-lg);
+}
+
+.menu-account-btn:hover:not(:disabled) {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  transform: translateY(-1px);
+}
+
+.menu-about {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .menu-container {
+    padding: var(--space-lg);
+  }
+  .menu-section {
+    padding: var(--space-lg);
+  }
+  .menu-heading {
+    font-size: var(--font-size-2xl);
+  }
+}
