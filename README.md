@@ -1,12 +1,12 @@
-# Verified Health Care
+#  Health Care
 
-#VHC - Verified. Qualified. Trusted
+#VHC - . Qualified. Trusted
 
 ## VHC Application - User Guide
 
 ## Welcome to VHC!
 
-VHC stands out as a revolutionary healthcare app, designed to bridge the gap between patients and verified doctors. Unlike traditional healthcare solutions, VHC ensures reliability, convenience, and affordability, making your healthcare journey seamless and stress-free. Here’s a simple guide to help you get started.
+VHC stands out as a revolutionary healthcare app, designed to bridge the gap between patients and  doctors. Unlike traditional healthcare solutions, VHC ensures reliability, convenience, and affordability, making your healthcare journey seamless and stress-free. Here’s a simple guide to help you get started.
 
 ## How VHC can help you?
 
