@@ -10,7 +10,7 @@ VHC stands out as a revolutionary healthcare app, designed to bridge the gap bet
 
 ## How VHC can help you?
 
-### 1. Verify Doctor Credentials
+### 1.  Doctor Credentials
 
 - **Why It Matters**: Ensure you’re seeing a qualified doctor.
 - **How It Works**: Scan the QR code provided by the doctor using the VHC app to view their qualifications, reviews, and consultation fees.
@@ -28,7 +28,7 @@ VHC stands out as a revolutionary healthcare app, designed to bridge the gap bet
 ### 4. Home Delivery of Medication
 
 - **Why It Matters**: Save time and effort by having your prescriptions delivered to your doorstep.
-- **How It Works**: Upload your prescription to the app. Our partner pharmacies will verify it and deliver your medications. You can track your order in real-time.
+- **How It Works**: Upload your prescription to the app. Our partner pharmacies will  it and deliver your medications. You can track your order in real-time.
 
 ### 5. Get Discounts on Consultations
 
@@ -44,7 +44,7 @@ VHC stands out as a revolutionary healthcare app, designed to bridge the gap bet
 
 1. **Download the App**: Available on both Android and iOS.
 2. **Create an Account**: Sign up using your email or phone number.
-3. **Explore the Features**: Use the app to verify doctors, find nearby healthcare providers, get emergency help, order medications, and more.
+3. **Explore the Features**: Use the app to  doctors, find nearby healthcare providers, get emergency help, order medications, and more.
 
 ## Need Help?
 

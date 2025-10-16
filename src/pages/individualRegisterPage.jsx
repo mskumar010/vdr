@@ -31,7 +31,7 @@ const IndividualRegisterPage = () => {
                 Find a Doctor
               </a>
               <a href="#" className="nav-link">
-                Verify a Doctor
+                Check a Doctor
               </a>
               <a href="#" className="nav-link sos-link">
                 SOS

@@ -47,7 +47,7 @@ const MobileNavigationBar = () => {
         onClick={() => handleNavClick(2)}
       >
         <Shield />
-        <span className="nav-label">Verify aDoc</span>
+        <span className="nav-label">Check a Doc</span>
       </Link>
 
       <Link

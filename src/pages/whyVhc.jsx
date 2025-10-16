@@ -156,7 +156,7 @@ const WhyVhc = () => {
 								<li>
 									<span className="Problemicon">❌</span>
 									<span className="Probletext">
-										60% of patients report difficulty verifying their doctor's
+										60% of patients report difficulty Check their doctor's
 										credentials
 									</span>
 								</li>

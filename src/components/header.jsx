@@ -26,7 +26,7 @@ const NAV_LINKS = [
   },
   {
     to: "/verifyDoc",
-    label: "Verify a Doc",
+    label: "Check a Doc",
     icon: <Shield className="headericons" />,
   },
   {
@@ -35,19 +35,19 @@ const NAV_LINKS = [
     icon: <Bell className="headericons" />,
     className: "sos-link",
   },
+  // {
+  //   to: "/whyVhc",
+  //   label: "Why VHC",
+  //   icon: <ShieldQuestion className="headericons" />,
+  // },
   {
-    to: "/whyVhc",
-    label: "Why VHC",
-    icon: <ShieldQuestion className="headericons" />,
-  },
-  {
-    href: "https://vdr-door-delivery-medicines.netlify.app/",
+    // href: "https://vdr-door-delivery-medicines.netlify.app/",
     label: "E‑Pharmacy",
     icon: <ShoppingBag className="headericons" />,
     external: true,
   },
   {
-    href: "https://v-insurance.netlify.app/",
+    // href: "https://v-insurance.netlify.app/",
     label: "V-Insurance",
     icon: <Shield className="headericons" />,
     external: true,

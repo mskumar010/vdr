@@ -123,7 +123,7 @@ Related to #
 
 ## 🎯 Post-Deployment
 - [ ] **Monitor for errors** for 24 hours post-deployment
-- [ ] **Verify metrics** remain stable
+- [ ] ** metrics** remain stable
 - [ ] **User feedback** collected (if user-facing changes)
 
 ---

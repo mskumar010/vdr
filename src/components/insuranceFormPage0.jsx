@@ -180,7 +180,7 @@ const FormPage0 = () => {
 							"I confirm that the mobile number and email I provided are mine.
 							By ticking this box, I authorize Doctor Application and its
 							representatives to contact me via calls, WhatsApp, or email to
-							verify the information I’ve provided. I understand that this may
+							 the information I’ve provided. I understand that this may
 							include contacting me even if I’m on the 'Do Not Call' list. I
 							also consent to sharing my information with trusted third parties
 							(like call centers or service partners) for processing

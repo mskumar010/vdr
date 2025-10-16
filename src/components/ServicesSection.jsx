@@ -23,9 +23,9 @@ const ServicesSection = () => {
 		},
 		{
 			id: 2,
-			title: 'Verify A Doctor',
+			title: 'Check A Doctor',
 			description:
-				'Quickly verify the credentials of any doctor to ensure their authenticity. This service helps you make informed decisions about your healthcare providers. Stay confident about the quality of care you receive.',
+				'Quickly Check the credentials of any doctor to ensure their authenticity. This service helps you make informed decisions about your healthcare providers. Stay confident about the quality of care you receive.',
 			icon: <ShieldCheck />,
 			locate: '/verifyDoc',
 		},
