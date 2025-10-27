@@ -2771,3 +2771,71 @@ Our enhanced ranking system uses **industry-standard metrics** based on GitHub O
   <a href="https://github.com/mskumar010/vdr/actions">⚙️ View Workflow</a></sub>
 </div>
 <!-- DEVELOPR_STATS_END -->
+
+<!-- DEVELOPER_STATS_START -->
+## 🏆 Top Developers
+
+> **Enhanced Ranking System**: Industry-standard metrics including merged PRs, bug fixes, code reviews, issue resolution, documentation, velocity, and consistency.
+
+<div align="center">
+<table>
+<tr>
+  <th align="center">Rank</th>
+  <th align="center">DEVELOPER</th>
+  <th align="center">Tier</th>
+  <th align="center">🔀 PRs</th>
+  <th align="center">🐛 Fixes</th>
+  <th align="center">👀 Reviews</th>
+  <th align="center">🎯 Issues</th>
+  <th align="center">📝 Commits</th>
+  <th align="center">⚡ Speed</th>
+  <th align="center">🏆 Score</th>
+</tr>
+<tr><td colspan="10" align="center"><em>No contributor data available yet. Run the workflow after some activity!</em></td></tr>
+</table>
+</div>
+
+## 📊 Scoring Methodology
+
+Our enhanced ranking system uses **industry-standard metrics** based on GitHub Octoverse, OSCI, and open source best practices:
+
+### 🎯 **Core Contributions (60% of score)**
+| Metric | Weight | Description |
+|--------|---------|-------------|
+| **🔀 Merged PRs** | **20x** | Successfully merged pull requests (most important) |
+| **🐛 Bug Fixes** | **+5x** | Bug fix PRs get bonus points |
+| **📖 Documentation** | **+8x** | Documentation PRs are highly valued |
+| **📝 Recent Commits** | **8x** | Commits from last 3 months |
+| **📝 Historical Commits** | **4x** | Older commits (capped at 200 total points) |
+| **📏 Lines Changed** | **0.01-0.02x** | Code impact measurement |
+
+### 🤝 **Collaboration & Community (25% of score)**
+| Metric | Weight | Description |
+|--------|---------|-------------|
+| **👀 Code Reviews** | **6x** | PR reviews given to others |
+| **💬 Review Comments** | **3x** | Detailed review feedback |
+| **🎯 Issues Closed** | **12x** | Problems solved |
+| **🐛 Issues Opened** | **3x** | Problems identified (capped) |
+
+### ⚡ **Quality & Velocity (15% of score)**
+| Metric | Impact | Description |
+|--------|---------|-------------|
+| **✅ PR Acceptance Rate** | **30x ratio** | Quality indicator |
+| **⚡ Time-to-Merge** | **±15 points** | Speed bonus/penalty |
+| **📏 Large PR Penalty** | **-5x** | Encourages smaller, reviewable PRs |
+| **🔄 Consistency** | **+25 max** | Regular contribution pattern |
+
+### 🏆 **Developer Tiers**
+
+- **🏆 Elite (800+ pts)**: Top 1% - Maintainer level Developer
+- **🔥 Expert (600-799 pts)**: Consistent high-impact Developer
+- **⭐ Advanced (400-599 pts)**: Regular & valuable Developer
+- **📈 Active (200-399 pts)**: Steady Developer
+- **🌱 Growing (100-199 pts)**: Developer [Learning]
+- **👋 Newcomer (0-99 pts)**: Just getting started
+
+<div align="center">
+  <sub>📈 Updated automatically every Monday at 00:00 UTC | Last update: 2025-10-27 00:45:58.789 | 
+  <a href="https://github.com/mskumar010/vdr/actions">⚙️ View Workflow</a></sub>
+</div>
+<!-- DEVELOPR_STATS_END -->
